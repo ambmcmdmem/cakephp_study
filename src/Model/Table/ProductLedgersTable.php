@@ -73,7 +73,8 @@ class ProductLedgersTable extends Table
             ->scalar('in_out')
             ->maxLength('in_out', 3)
             ->requirePresence('in_out', 'create')
-            ->notEmptyString('in_out');
+            ->notEmptyString('in_out')
+            ->regex('in_out', '/in|out/', 'in or out');
 
         $validator
             ->integer('quantity')

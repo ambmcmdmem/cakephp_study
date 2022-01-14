@@ -22,21 +22,21 @@ class ProductInitialSeed extends AbstractSeed
     {
         $data = [
             [
-                'products_code' => '100-A',
+                'product_code' => '100-A',
                 'name' => '商品A',
                 'price' => 1000,
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s')
             ],
             [
-                'products_code' => '100-B',
+                'product_code' => '100-B',
                 'name' => '商品B',
                 'price' => 2000,
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s')
             ],
             [
-                'products_code' => '100-C',
+                'product_code' => '100-C',
                 'name' => '商品C',
                 'price' => 3000,
                 'created' => date('Y-m-d H:i:s'),

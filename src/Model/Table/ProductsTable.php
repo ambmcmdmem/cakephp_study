@@ -77,4 +77,13 @@ class ProductsTable extends Table
 
         return $validator;
     }
+
+    public function buildRules(RulesChecker $rules): RulesChecker {
+        $rules->add($rules->isUnique(
+            ['product_code'],
+            'この商品コードはすでに利用されています。'
+        ));
+
+        return $rules;
+    }
 }

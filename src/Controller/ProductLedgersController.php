@@ -11,6 +11,20 @@ namespace App\Controller;
  */
 class ProductLedgersController extends AppController
 {
+    public $paginate = [
+        'limit' => 100
+    ];
+
+    public function initialize(): void {
+        parent::initialize();
+        $in_out = [
+            'in' => __('入庫'),
+            'out' => __('出庫')
+        ];
+
+        $this->set(compact('in_out'));
+    }
+
     /**
      * Index method
      *
@@ -18,6 +32,7 @@ class ProductLedgersController extends AppController
      */
     public function index()
     {
+        $this->set('title', __('商品台帳'));
         $productLedgers = $this->paginate($this->ProductLedgers);
 
         $this->set(compact('productLedgers'));
@@ -46,6 +61,12 @@ class ProductLedgersController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Products');
+        $products = $this->Products->find('list', [
+            'keyField' => 'product_code',
+            'valueField' => 'product_code'
+        ])->toArray();
+
         $productLedger = $this->ProductLedgers->newEmptyEntity();
         if ($this->request->is('post')) {
             $productLedger = $this->ProductLedgers->patchEntity($productLedger, $this->request->getData());
@@ -56,7 +77,7 @@ class ProductLedgersController extends AppController
             }
             $this->Flash->error(__('The product ledger could not be saved. Please, try again.'));
         }
-        $this->set(compact('productLedger'));
+        $this->set(compact('productLedger', 'products'));
     }
 
     /**

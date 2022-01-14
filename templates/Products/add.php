@@ -4,26 +4,26 @@
  * @var \App\Model\Entity\Product $product
  */
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Products'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="products form content">
-            <?= $this->Form->create($product) ?>
-            <fieldset>
-                <legend><?= __('Add Product') ?></legend>
-                <?php
-                    echo $this->Form->control('product_code');
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('price');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
-    </div>
-</div>
+
+<?= $this->Form->create($product) ?>
+<fieldset>
+    <legend><?= __('商品マスターの登録') ?></legend>
+    <?php
+        echo $this->Form->control('product_code', [
+            'class' => 'form-control',
+            'label' => __('商品コード')
+        ]);
+        echo $this->Form->control('name', [
+            'class' => 'form-control',
+            'label' => __('商品名')
+        ]);
+        echo $this->Form->control('price', [
+            'class' => 'form-control',
+            'label' => __('値段'),
+            'type' => 'number',
+            'min' => '0'
+        ]);
+    ?>
+</fieldset>
+<?= $this->Form->button(__('保存')) ?>
+<?= $this->Form->end() ?>
